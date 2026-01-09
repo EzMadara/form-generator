@@ -4,12 +4,13 @@ import { prisma } from '@/lib/prisma';
 // GET - Retrieve a single invoice by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const invoice = await prisma.invoice.findUnique({
       where: {
-        id: params.id,
+        id: id,
       },
     });
 
@@ -33,12 +34,13 @@ export async function GET(
 // DELETE - Delete an invoice
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await prisma.invoice.delete({
       where: {
-        id: params.id,
+        id: id,
       },
     });
 
