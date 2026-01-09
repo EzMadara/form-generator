@@ -22,28 +22,40 @@
 
 ## ⚠️ Required Actions Before Deployment
 
-### 1. Set Up PostgreSQL Database
+### 1. Set Up PostgreSQL Database (Neon)
 
-SQLite doesn't work on Vercel's serverless platform. You need a PostgreSQL database. Options:
+**Note:** Vercel Postgres has been deprecated. Vercel now offers Neon through their Storage/Marketplace.
 
-**Option A: Vercel Postgres (Recommended)**
-1. Go to your Vercel project dashboard
-2. Navigate to the "Storage" tab
-3. Create a new Postgres database
-4. Copy the connection string (it will be automatically added as `POSTGRES_PRISMA_URL` or `DATABASE_URL`)
+SQLite doesn't work on Vercel's serverless platform. You need a PostgreSQL database.
 
-**Option B: External Providers**
-- [Neon](https://neon.tech) - Free tier available, great for serverless
+**Recommended: Neon via Vercel (Easiest)**
+1. In your Vercel project dashboard, go to **Storage** tab
+2. Click **Create New**
+3. Select **Neon**
+4. Connect it to your Vercel project
+5. Vercel automatically creates the database and adds environment variables (`DATABASE_URL`, `POSTGRES_URL`)
+6. Free tier: 3 GB storage, unlimited compute
+
+**Alternative: Set up Neon separately**
+1. Go to [neon.tech](https://neon.tech) and sign up (free)
+2. Create a new project
+3. Copy the connection string
+4. Manually add it to Vercel as `DATABASE_URL` environment variable
+
+**Other Providers:**
 - [Supabase](https://supabase.com) - Free tier available
 - [Railway](https://railway.app) - Free tier available
 
 ### 2. Configure Environment Variables in Vercel
 
-In your Vercel project settings → Environment Variables, add:
+**If you created Neon through Vercel Storage:**
+- Environment variables are automatically added! (`DATABASE_URL`, `POSTGRES_URL`)
+- You can verify in **Settings** → **Environment Variables**
 
-- `DATABASE_URL`: Your PostgreSQL connection string
-  - Format: `postgresql://user:password@host:port/database?sslmode=require`
-  - If using Vercel Postgres, use the `POSTGRES_PRISMA_URL` or `POSTGRES_URL_NON_POOLING` variable they provide
+**If you set up Neon separately:**
+- Go to **Settings** → **Environment Variables**
+- Add `DATABASE_URL` with your Neon connection string
+- Format: `postgresql://user:password@host:port/database?sslmode=require`
 
 ### 3. Test Locally (Optional but Recommended)
 

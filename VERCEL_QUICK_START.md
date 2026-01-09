@@ -6,28 +6,37 @@
 
 ## 🚀 Final Steps (5 minutes)
 
-### Step 1: Set Up PostgreSQL Database
+### Step 1: Set Up PostgreSQL Database (Neon via Vercel)
 
-**Option A: Vercel Postgres (Easiest)**
-1. Go to [vercel.com](https://vercel.com) and sign in
-2. Create a new project or select your existing project
-3. Go to **Storage** tab → **Create Database** → **Postgres**
-4. Create the database (free tier available)
-5. Copy the connection string (look for `POSTGRES_PRISMA_URL` or `POSTGRES_URL_NON_POOLING`)
+**Easiest Method: Create Neon through Vercel**
 
-**Option B: External Provider (Neon - Recommended)**
+1. In your Vercel project dashboard, go to the **Storage** tab
+2. Click **Create New**
+3. Select **Neon** from the options
+4. Connect it to your Vercel project
+5. Vercel will automatically create the database and inject environment variables:
+   - `DATABASE_URL`
+   - `POSTGRES_URL`
+6. You're done! No need to manually add environment variables.
+
+**Alternative: Set up Neon separately**
+If you prefer to set up Neon separately:
 1. Go to [neon.tech](https://neon.tech) and sign up (free)
-2. Create a new project
-3. Copy the connection string from the dashboard
+2. Create a project
+3. Copy the connection string
+4. Manually add it to Vercel as `DATABASE_URL` environment variable
 
-### Step 2: Add Environment Variable in Vercel
+### Step 2: Verify Environment Variables (If using Vercel Storage)
 
-1. In your Vercel project dashboard, go to **Settings** → **Environment Variables**
-2. Add a new variable:
-   - **Name**: `DATABASE_URL`
-   - **Value**: Your PostgreSQL connection string
-   - **Environment**: Select all (Production, Preview, Development)
-3. Click **Save**
+If you created Neon through Vercel's Storage tab, the environment variables are automatically added! You can verify:
+1. Go to **Settings** → **Environment Variables**
+2. You should see `DATABASE_URL` and `POSTGRES_URL` already there
+
+**If you set up Neon separately:**
+1. Go to **Settings** → **Environment Variables**
+2. Add `DATABASE_URL` with your Neon connection string
+3. Select all environments (Production, Preview, Development)
+4. Click **Save**
 
 ### Step 3: Deploy
 
