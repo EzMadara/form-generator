@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Invoice" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "requestNumber" TEXT NOT NULL,
     "date" TEXT NOT NULL,
     "purpose" TEXT NOT NULL,
@@ -14,8 +14,10 @@ CREATE TABLE "Invoice" (
     "projectConsultant" TEXT NOT NULL,
     "purchasingOfficer" TEXT NOT NULL,
     "recipientCompany" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Invoice_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
